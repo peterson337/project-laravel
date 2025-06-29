@@ -10,6 +10,7 @@ class RecoverFinanceController extends Controller
 {
     public function index()
     {
-        dump(FinanceseModel::all());
+           return FinanceseModel::all();
+
     }
 }

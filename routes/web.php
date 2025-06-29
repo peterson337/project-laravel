@@ -14,7 +14,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/finances', [FinancesController::class, 'saveFinances'] )->middleware('auth', 'verified') ->name('finances');
-Route::get('/finances-recover', [RecoverFinanceController::class, 'index'] )->middleware('auth', 'verified') ->name('finances-recover');
+Route::get('/finances-recover', [FinancesController::class, 'index'] )->middleware('auth', 'verified') ->name('finances-recover');
+Route::delete('/delete-finance/{id}', [FinancesController::class, 'deleteFinance'] )->middleware('auth', 'verified') ->name('delete-finance');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

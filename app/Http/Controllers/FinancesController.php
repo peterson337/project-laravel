@@ -28,4 +28,18 @@ class FinancesController extends Controller
         }
 
     }
+    
+     public function index()
+    {
+           return FinanceseModel::all();
+
+    }
+
+    public function deleteFinance($id) {
+        FinanceseModel::findOrFail($id) -> delete();     
+
+        return response()->json(['message' => 'As dados foram deletados com sucesso!'], 201);
+
+
+    }
 }
