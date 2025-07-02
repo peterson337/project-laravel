@@ -42,4 +42,17 @@ class FinancesController extends Controller
 
 
     }
+
+    public function editFinance(Request $request) {
+            $price = $request -> input('price');
+            $description = $request -> input('description');
+            $type = $request -> input('type');
+            $id = $request -> input('id');
+            $findFinance = FinanceseModel::findOrFail($id);
+            $findFinance -> priceTotal = $price;
+            $findFinance -> description = $description;
+            $findFinance -> type = $type;
+            $findFinance -> save();
+            return response()->json(['message' => 'As dados foram editados com sucesso!'], 201);
+    }
 }
