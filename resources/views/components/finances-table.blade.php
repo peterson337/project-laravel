@@ -24,6 +24,10 @@
     isEditMode: false,
     
     async recoverFinances() {
+        this.totalSpent = 0;
+        this.totalIncome = 0;
+        this.totalExpenses = 0;
+
          const res = await axios.get('/finances-recover');
 
         this.data = res.data.filter(item => item.user_id === this.userId);
@@ -145,15 +149,15 @@
                 <div :class="containerStyle">
                     
                     <div :class="cardStyle">
-                <h4>Renda:</h4>
+                <h4>Total de renda:</h4>
                 <h3>R$ <span x-text="totalIncome"></span></h3>
             </div>
             <div :class="cardStyle">
-                <h4>Despesas:</h4>
+                <h4>Total de despesas:</h4>
                 <h3>R$ <span x-text="totalExpenses"></span></h3>
             </div>
             <div :class="cardStyle">
-                <h4>Total  de gastos:</h4>
+                <h4>Saldo líquido: </h4>
                 <h3>R$ <span x-text="totalSpent"></span></h3>
             </div>
         </div>
@@ -185,8 +189,8 @@
 
                                     <td x-show="isEditMode" class="text-center">
                                          <select :class="inputStyle" x-model="item.type" style="width: 8rem">
-                                        <option value="Entrada">Entrada</option>
-                                        <option value="Saida">Saída</option>
+                                        <option value="entrada">Entrada</option>
+                                        <option value="saida">Saída</option>
                                          </select>
                                     </td>
 
